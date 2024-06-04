@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.ssafit.model.dao.VideoDao">
+
+	<select id="selectAll" resultType="Video">
+		SELECT *
+		FROM video
+	</select>
+
+	<select id="selectOne" parameterType="int" resultType="Video">
+		SELECT *
+		FROM video
+		WHERE video_id = #{id}
+	</select>
+
+	<select id="selectPart" parameterType="String" resultType="Video">
+		SELECT *
+		FROM video
+		WHERE part LIKE #{part}
+	</select>
+	
+	<select id="sortDescending" resultType="Video">
+		SELECT *
+		FROM video
+		ORDER BY view_cnt DESC
+	</select>
+	
+	<update id="updateViewCnt" parameterType="int">
+		UPDATE video
+		SET view_cnt = view_cnt + 1
+		WHERE video_id = #{id}
+	</update>
+	
+	
+</mapper>
